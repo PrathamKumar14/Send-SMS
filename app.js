@@ -3,8 +3,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const nexmo = require("nexmo");
+const Nexmo = require("nexmo");
 const socketIO = require("socket.io");
+
+//******* Init Nexmo ********
+
+const nexmo = new Nexmo({
+  apiKey: "fb8d8bc8",
+  apiSecret: "9nmhInTEzXeN8JTQ"
+}, {debug: true});
 
 // Init app
 const app = express();
@@ -26,8 +33,23 @@ app.get("/", function(req, res){
 });
 
 app.post("/", function(req, res){
-  res.send(req.body);
-  console.log(req.body);
+  // res.send(req.body);
+  // console.log(req.body);
+
+  const number = req.body.number;
+  const text = req.body.text;
+
+  nexmo.message.sendSms(
+    "918860875081", number, text, { type: "unicode" },
+    (err, responseData) => {
+      if(err) {
+        console.log(err);
+      }
+      else {
+        console.dir(responseData);
+      }
+    }
+  );
 });
 
 
