@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <title>Send SMS</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Send Message</h2>
+      <input type="tel" name="number" placeholder="Enter Number">
+      <input type="text" name="msg" placeholder="Enter Message">
+      <input class="button-primary" type="button" name="button" value="Send">
+      <p class="responsive"></p>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
