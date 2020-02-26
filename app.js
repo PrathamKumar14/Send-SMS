@@ -9,7 +9,7 @@ const socketIO = require("socket.io");
 // Init app
 const app = express();
 
-app.use(express.static(__dirname + "public"));
+app.use(express.static(__dirname + "/public"));
 
 app.set('view engine', 'html');
 app.engine('html', ejs.renderFile);
@@ -23,6 +23,11 @@ app.use(bodyParser.urlencoded({
 
 app.get("/", function(req, res){
   res.render("index");
+});
+
+app.post("/", function(req, res){
+  res.send(req.body);
+  console.log(req.body);
 });
 
 
