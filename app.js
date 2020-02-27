@@ -49,7 +49,6 @@ app.post("/", function(req, res){
         console.dir(responseData);
         // Get data from response
         const data = {
-          id: responseData.messages[0]["message-id"],
           number: responseData.messages[0]['to']
         };
 
