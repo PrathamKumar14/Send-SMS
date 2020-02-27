@@ -47,14 +47,30 @@ app.post("/", function(req, res){
       }
       else {
         console.dir(responseData);
+        // Get data from response
+        const data = {
+          id: responseData.messages[0]["message-id"],
+          number: responseData.messages[0]['to']
+        };
+
+        // Emit data to client side
+        io.emit("smsStatus",data);
       }
     }
   );
 });
 
-
-
 // Start Server
 const server = app.listen(3000, function(req, res){
   console.log("Server started at port 3000");
+});
+
+//******** Connect to socket.io ************
+
+const io = socketIO(server);
+io.on("connection", function(socket) {
+  console.log("Connected");
+  io.on("disconnect", function(){
+    console.log("Disconnected");
+  });
 });
