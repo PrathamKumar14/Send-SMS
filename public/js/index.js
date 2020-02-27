@@ -6,6 +6,11 @@ const textMessage = document.getElementById("msg");
 
 document.getElementById("button").addEventListener("click", handleClick, false);
 
+const socket = io();
+socket.on("smsStatus", function(data){
+  document.getElementById("responsive").innerHTML = "<h5>Message sent to " + data.number + "</h5>";
+});
+
 function handleClick() {
   const number = inputNumber.value.replace(/\D/g, "");
   const text = textMessage.value;
